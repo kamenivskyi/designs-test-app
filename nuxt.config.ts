@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['nuxt-vuefire'],
+  modules: ['nuxt-vuefire', 'nuxt-svgo', '@nuxt/fonts'],
   vuefire: {
     config: {
       apiKey: process.env.FIRESTORE_API_KEY,
@@ -12,5 +13,14 @@ export default defineNuxtConfig({
       storageBucket: process.env.FIRESTORE_STORAGE_BUCKET,
       messagingSenderId: process.env.FIRESTORE_MESSAGING_SENDER_ID
     }
-  }
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/styles/_variables.scss" as *;',
+        }
+      }
+    },
+  },
 })
