@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-console.log('hello app')
 </script>
 
 <style lang="scss">

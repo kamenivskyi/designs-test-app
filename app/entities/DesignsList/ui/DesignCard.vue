@@ -18,13 +18,10 @@
 </template>
 
 <script setup lang="ts">
+import type { IDesign } from '../types'
+
 interface IProps {
-    data: {
-        img: string,
-        id: string,
-        name: string,
-        design_id: number
-    }
+    data: IDesign
 }
 
 defineProps<IProps>()

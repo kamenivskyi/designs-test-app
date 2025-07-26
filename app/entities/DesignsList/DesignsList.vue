@@ -1,7 +1,7 @@
 <template>
     <div class="designs">
         <div class="designs__list">
-            <DesignCard v-for="item in items" :data="item" />
+            <DesignCard v-for="item in items" :data="item" :key="item.id" />
         </div>
     </div>
 </template>
@@ -9,7 +9,7 @@
 <script setup>
 import { useCollection } from 'vuefire'
 import { collection, getFirestore } from 'firebase/firestore'
-import DesignCard from './ui/DesignCard.vue';
+import DesignCard from './ui/DesignCard.vue'
 
 const COLLECTION_KEY = 'designs'
 
