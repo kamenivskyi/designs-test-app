@@ -1,10 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['nuxt-vuefire'],
+  modules: ['nuxt-vuefire', 'nuxt-svgo'],
   vuefire: {
     config: {
       apiKey: process.env.FIRESTORE_API_KEY,
@@ -24,7 +23,4 @@ export default defineNuxtConfig({
       }
     },
   },
-  plugins: [
-    svgLoader()
-  ],
 })

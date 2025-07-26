@@ -1,12 +1,12 @@
 <template>
     <div class="designs">
         Designs
-        <div></div>
+        <ArrowLeft />
     </div>
 </template>
 
 <script setup>
-
+import ArrowLeft from '~/assets/icons/arrow-left.svg'
 </script>
 
 <style lang="scss" scoped>
