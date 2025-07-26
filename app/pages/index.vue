@@ -1,10 +1,11 @@
 <template>
-    <div>
-        Home page
+    <div class="home-page">
+        <DesignsList />
     </div>
 </template>
 
 <script setup>
+import DesignsList from '~/entities/DesignsList/DesignsList.vue'
 
 </script>
 

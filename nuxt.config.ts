@@ -12,5 +12,14 @@ export default defineNuxtConfig({
       storageBucket: process.env.FIRESTORE_STORAGE_BUCKET,
       messagingSenderId: process.env.FIRESTORE_MESSAGING_SENDER_ID
     }
-  }
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/styles/_variables.scss" as *;',
+        }
+      }
+    },
+  },
 })
