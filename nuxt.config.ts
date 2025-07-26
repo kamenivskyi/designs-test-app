@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['nuxt-vuefire', 'nuxt-svgo'],
+  modules: ['nuxt-vuefire', 'nuxt-svgo', '@nuxt/fonts'],
   vuefire: {
     config: {
       apiKey: process.env.FIRESTORE_API_KEY,
