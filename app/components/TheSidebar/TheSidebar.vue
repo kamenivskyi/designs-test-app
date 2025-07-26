@@ -13,7 +13,8 @@ import Logo from '~/assets/icons/logo.svg'
     display: flex;
     justify-content: center;
     padding-top: 9px;
-    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
     background-color: $secondary;
     min-height: 100%;
 
