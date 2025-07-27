@@ -1,6 +1,8 @@
 <template>
     <aside class="sidebar">
-        <Logo class="sidebar__logo" title="Logo" />
+        <NuxtLink to="/">
+            <Logo class="sidebar__logo" title="Logo" />
+        </NuxtLink>
     </aside>
 </template>
 
@@ -21,6 +23,7 @@ import Logo from '~/assets/icons/logo.svg'
     &__logo {
         width: 24px;
         height: 24px;
+        color: $light;
     }
 }
 </style>

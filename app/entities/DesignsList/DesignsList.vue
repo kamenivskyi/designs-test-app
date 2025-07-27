@@ -1,12 +1,15 @@
 <template>
     <div class="designs">
-        <div class="designs__list">
+        <div v-if="items?.length > 0" class="designs__list">
             <DesignCard
                 v-for="item in items"
                 :to="`/edit-design/${item.id}`"
                 :data="item"
                 :key="item.id"
             />
+        </div>
+        <div v-else>
+            Поки немає даних
         </div>
     </div>
 </template>

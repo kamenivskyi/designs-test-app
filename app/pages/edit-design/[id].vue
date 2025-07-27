@@ -1,30 +1,37 @@
 <template>
     <div class="edit-design">
-        <AppContainer v-if="data">
-            <AppHeading>
-                <template #left-content>
-                    <div class="edit-design__heading">
-                        <NuxtLink to="/" class="edit-design__back">
-                            <SvgoArrowLeft />
-                        </NuxtLink>
-                        <AppSwitcher v-model="fields.is_published" />
-                        <span class="edit-design__label">{{ fields.is_published ? 'Опублікований' : 'Неопублікований' }}</span>
-                    </div>
-                </template>
-                <template #right-content>
-                    <AppButton @click="handleSaveAndQuitClick" :is-disabled="!hasChanges">Зберегти і вийти</AppButton>
-                </template>
-            </AppHeading>
-            <DesignForm
-                :design-img="fields.img"
-                :designId="fields.design_id"
-                :designName="fields.name"
-                :designURL="fields.url"
-                @designIdChange="(value) => fields.design_id = value"
-                @designNameChange="(value) => fields.name = value"
-                @designURLChange="(value) => fields.url = value"
-                @designImgChange="(value) => fields.img = value"
-            />
+        <AppContainer>
+            <template v-if="data">
+                <AppHeading>
+                    <template #left-content>
+                        <div class="edit-design__heading">
+                            <NuxtLink to="/" class="edit-design__back" title="На головну">
+                                <SvgoArrowLeft />
+                            </NuxtLink>
+                            <AppSwitcher v-model="fields.is_published" />
+                            <span class="edit-design__label">{{ fields.is_published ? 'Опублікований' : 'Неопублікований' }}</span>
+                        </div>
+                    </template>
+                    <template #right-content>
+                        <AppButton @click="handleSaveAndQuitClick" :is-disabled="!hasChanges">Зберегти і вийти</AppButton>
+                    </template>
+                </AppHeading>
+                <DesignForm
+                    :design-img="fields.img"
+                    :designId="fields.design_id"
+                    :designName="fields.name"
+                    :designURL="fields.url"
+                    @designIdChange="(value) => fields.design_id = value"
+                    @designNameChange="(value) => fields.name = value"
+                    @designURLChange="(value) => fields.url = value"
+                    @designImgChange="(value) => fields.img = value"
+                />
+            </template>
+            <div v-else>
+                За цим посиланням немає дизайну
+                <br>
+                <NuxtLink to="/">На головну</NuxtLink>
+            </div>
         </AppContainer>
     </div>
 </template>
@@ -118,9 +125,14 @@ watchEffect(() => {
     }
 
     &__back {
-        margin-right: 64px;
+        margin-right: 14px;
+        color: $black-200;
 
-        :deep(svg) {
+        @media (min-width: $lg-breakpoint) {
+            margin-right: 64px;
+        }
+
+        :deep(svg) path {
             fill: $black-200 !important;
         }
     }

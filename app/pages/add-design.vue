@@ -92,9 +92,13 @@ const saveAndQuit = async () => {
 
 
     &__back {
-        margin-right: 64px;
+        margin-right: 14px;
 
-        :deep(svg) {
+        @media (min-width: $lg-breakpoint) {
+            margin-right: 64px;
+        }
+
+        :deep(svg) path {
             fill: $black-200;
         }
     }
