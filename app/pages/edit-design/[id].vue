@@ -13,7 +13,10 @@
                         </div>
                     </template>
                     <template #right-content>
-                        <AppButton @click="handleSaveAndQuitClick" :is-disabled="!hasChanges">Зберегти і вийти</AppButton>
+                        <div class="edit-design__actions">
+                            <AppButton @click="handleRemoveClick" variant="error">Видалити</AppButton>
+                            <AppButton @click="handleSaveAndQuitClick" :is-disabled="!hasChanges">Зберегти і вийти</AppButton>
+                        </div>
                     </template>
                 </AppHeading>
                 <DesignForm
@@ -37,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { collection, doc, getFirestore, updateDoc } from 'firebase/firestore'
+import { collection, deleteDoc, doc, getFirestore, updateDoc } from 'firebase/firestore'
 import AppButton from '~/components/Buttons/AppButton.vue'
 import AppContainer from '~/components/Container/AppContainer.vue'
 import AppSwitcher from '~/components/Forms/AppSwitcher.vue'
@@ -106,6 +109,18 @@ const populateData = (data: IDesign) => {
     Object.assign(fields, data)
 }
 
+const handleRemoveClick = async () => {
+    if (confirm('Ви справді бажаєте видалити цей дизайн?')) {
+        try {
+            await deleteDoc(docRef)
+            navigateTo('/')
+            console.log('handleRemoveClick')
+        } catch (error) {
+            console.log('Помилка видалення: ', error)
+        }
+    }
+}
+
 watchEffect(() => {
     if (data.value) {
         populateData(data.value as IDesign)
@@ -118,6 +133,11 @@ watchEffect(() => {
     min-height: 100%;
     background-color: $light;
     color: $black;
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+    }
 
     &__heading {
         display: flex;
