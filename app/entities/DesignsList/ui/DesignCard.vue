@@ -2,7 +2,7 @@
     <div class="design-card">
         <div class="design-card__img-wrap">
             <img
-                :src="data?.img"
+                :src="data?.img.image_base64"
                 class="design-card__img"
                 :alt="data.name"
                 :title="data.name"

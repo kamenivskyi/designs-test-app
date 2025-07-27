@@ -12,7 +12,7 @@
                     </div>
                 </template>
                 <template #right-content>
-                    <AppButton @click="saveAndQuit">Зберегти і вийти</AppButton>
+                    <AppButton @click="handleSaveAndQuitClick">Зберегти і вийти</AppButton>
                 </template>
             </AppHeading>
             <DesignForm
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import { SvgoArrowLeft } from '#components'
 
 import AppButton from '~/components/Buttons/AppButton.vue'
@@ -37,8 +37,10 @@ import AppHeading from '~/components/Heading/AppHeading.vue'
 import AppContainer from '~/components/Container/AppContainer.vue'
 import AppSwitcher from '~/components/Forms/AppSwitcher.vue'
 import DesignForm from '~/entities/DesignForm/DesignForm.vue'
+import { isValidUrl } from '~/utils'
 
 const { $firebaseApp } = useNuxtApp()
+const db = getFirestore($firebaseApp)
 
 const isPublished = ref(false)
 const payload = reactive({
@@ -49,15 +51,30 @@ const payload = reactive({
     url: '',
 })
 
-const areFilledFields = (data) => Object.values(data).every((item) => !!item)
+const areFieldsFilled = (data) => Object.values(data).every(Boolean)
 
-const saveAndQuit = async () => {
+const handleSaveAndQuitClick = () => {
     const { is_published, url, ...requiredPayload } = payload
 
-    if (areFilledFields(requiredPayload)) {
-        console.log('filled')
-    } else {
-        alert('Заповніть всі поля!')
+    if (!areFieldsFilled(requiredPayload)) {
+        return alert('Заповніть всі поля!')
+    }
+
+    if (!isValidUrl(url)) {
+        return alert('Не валідний урл!')
+    }
+
+    saveAndQuit()
+}
+
+const saveAndQuit = async () => {
+    try {
+        await addDoc(collection(db, 'designs'), payload)
+        alert('Успіх!')
+        navigateTo('/')
+    } catch (error) {
+        console.log('Трапилась помилка', error)
+        alert('Трапилась помилка! ', error)
     }
 }
 </script>
