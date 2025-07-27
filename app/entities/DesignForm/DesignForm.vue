@@ -47,7 +47,7 @@ interface IProps {
     designId: number,
     designName: string,
     designURL: string,
-    designImg: string
+    designImg?: string
 }
 
 const emit = defineEmits<IEmits>()
