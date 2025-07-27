@@ -18,6 +18,8 @@
 body {
     min-height: 100vh;
     font-family: $main-font, sans-serif;
+    background-color: $dark;
+    color: $light;
     font-size: 16px;
     font-weight: 400;
     word-wrap: break-word;
@@ -25,7 +27,7 @@ body {
 
 a {
     width: fit-content;
-    font-weight: 700;
+    font-weight: 400;
     text-decoration: none;
     cursor: pointer;
 }

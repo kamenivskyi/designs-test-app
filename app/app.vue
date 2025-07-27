@@ -1,11 +1,14 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+    <NuxtLayout>
+        <NuxtPage />
+    </NuxtLayout>
 </template>
 
 <script setup>
-console.log('hello app')
+useSeoMeta({
+    title: 'Test task',
+    robots: 'noindex, nofollow'
+})
 </script>
 
 <style lang="scss">
