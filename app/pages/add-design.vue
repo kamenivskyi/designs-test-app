@@ -22,12 +22,14 @@
                 @designIdChange="(value) => payload.design_id = value"
                 @designNameChange="(value) => payload.name = value"
                 @designURLChange="(value) => payload.url = value"
+                @designImgChange="(value) => payload.img = value"
             />
         </AppContainer>
     </div>
 </template>
 
 <script setup>
+import { addDoc, collection } from 'firebase/firestore'
 import { SvgoArrowLeft } from '#components'
 
 import AppButton from '~/components/Buttons/AppButton.vue'
@@ -35,6 +37,8 @@ import AppHeading from '~/components/Heading/AppHeading.vue'
 import AppContainer from '~/components/Container/AppContainer.vue'
 import AppSwitcher from '~/components/Forms/AppSwitcher.vue'
 import DesignForm from '~/entities/DesignForm/DesignForm.vue'
+
+const { $firebaseApp } = useNuxtApp()
 
 const isPublished = ref(false)
 const payload = reactive({
@@ -45,8 +49,16 @@ const payload = reactive({
     url: '',
 })
 
-function saveAndQuit() {
-    console.log('saveAndQuit', payload)
+const areFilledFields = (data) => Object.values(data).every((item) => !!item)
+
+const saveAndQuit = async () => {
+    const { is_published, url, ...requiredPayload } = payload
+
+    if (areFilledFields(requiredPayload)) {
+        console.log('filled')
+    } else {
+        alert('Заповніть всі поля!')
+    }
 }
 </script>
 

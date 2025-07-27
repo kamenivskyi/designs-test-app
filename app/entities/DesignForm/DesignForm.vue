@@ -32,12 +32,14 @@
 
 <script setup lang="ts">
 import AppInput from '~/components/Forms/AppInput.vue'
-import AppInputFiles from '~/components/Forms/AppInputFiles.vue';
+import AppInputFiles from '~/components/Forms/AppInputFiles.vue'
+import type { IImage } from '~/types'
 
 interface IEmits {
     'designIdChange': [value: number],
     'designNameChange': [value: string],
     'designURLChange': [value: string],
+    'designImgChange': [imgData: IImage],
 }
 
 interface IProps {
@@ -55,9 +57,7 @@ const designId = ref(props.designId)
 const designName = ref(props.designName)
 const designURL = ref(props.designURL)
 
-function onImagesUpdated(newImage) {
-    console.log('newImage', newImage)
-}
+const onImagesUpdated = (newImage: IImage) => emit('designImgChange', newImage)
 
 watch(designId, (newId) => {
     emit('designIdChange', newId)

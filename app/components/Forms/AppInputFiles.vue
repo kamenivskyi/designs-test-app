@@ -42,10 +42,10 @@ import { SvgoSkeletonImg } from '#components'
 
 interface IProps {
     name: string,
-    error: string,
+    error?: string,
 }
 
-const props = defineProps<IProps>()
+defineProps<IProps>()
 
 const emit = defineEmits<{
     'update:modelValue': [data: { file_name: string, image_base64: string }]
