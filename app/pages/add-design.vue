@@ -90,8 +90,13 @@ const saveAndQuit = async () => {
         align-items: center;
     }
 
+
     &__back {
         margin-right: 64px;
+
+        :deep(svg) {
+            fill: $black-200;
+        }
     }
 
     &__label {

@@ -1,7 +1,12 @@
 <template>
     <div class="designs">
         <div class="designs__list">
-            <DesignCard v-for="item in items" :data="item" :key="item.id" />
+            <DesignCard
+                v-for="item in items"
+                :to="`/edit-design/${item.id}`"
+                :data="item"
+                :key="item.id"
+            />
         </div>
     </div>
 </template>

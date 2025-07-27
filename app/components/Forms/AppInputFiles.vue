@@ -38,14 +38,13 @@
 </template>
 
 <script setup lang="ts">
-import { SvgoSkeletonImg } from '#components'
-
 interface IProps {
     name: string,
     error?: string,
+    initialImg: string | undefined
 }
 
-defineProps<IProps>()
+const props = defineProps<IProps>()
 
 const emit = defineEmits<{
     'update:modelValue': [data: { file_name: string, image_base64: string }]
@@ -54,12 +53,17 @@ const emit = defineEmits<{
 const validTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 const maxSize = 5 * 1024 * 1024
 
-const previewUrl = ref('')
+const previewUrl = ref(props.initialImg)
 const isValidFile = ref(true)
 const errorText = ref('')
 
 const removePreviewUrl = () => {
     previewUrl.value = ''
+
+    emit('update:modelValue', {
+        file_name: '',
+        image_base64: ''
+    })
 }
 
 const onDropFiles = (event: DragEvent) => {

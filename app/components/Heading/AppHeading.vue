@@ -17,5 +17,9 @@
     min-height: 80px;
     gap: 20px;
     width: 100%;
+
+    :deep(a) {
+        color: $light;
+    }
 }
 </style>

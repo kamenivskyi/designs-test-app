@@ -4,6 +4,7 @@
             <AppInputFiles
                 name="imageFiles"
                 ref="imageFiles"
+                :initialImg="designImg"
                 @update:modelValue="onImagesUpdated"
             />
             <div class="add-form__row">
@@ -39,13 +40,14 @@ interface IEmits {
     'designIdChange': [value: number],
     'designNameChange': [value: string],
     'designURLChange': [value: string],
-    'designImgChange': [imgData: IImage],
+    'designImgChange': [imgData: string],
 }
 
 interface IProps {
     designId: number,
     designName: string,
     designURL: string,
+    designImg: string
 }
 
 const emit = defineEmits<IEmits>()
@@ -57,7 +59,7 @@ const designId = ref(props.designId)
 const designName = ref(props.designName)
 const designURL = ref(props.designURL)
 
-const onImagesUpdated = (newImage: IImage) => emit('designImgChange', newImage)
+const onImagesUpdated = (newImage: IImage) => emit('designImgChange', newImage.image_base64)
 
 watch(designId, (newId) => {
     emit('designIdChange', newId)

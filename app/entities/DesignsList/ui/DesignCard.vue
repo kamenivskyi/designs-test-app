@@ -1,23 +1,26 @@
 <template>
     <div class="design-card">
-        <div class="design-card__img-wrap">
-            <img
-                :src="data?.img.image_base64"
-                class="design-card__img"
-                :alt="data.name"
-                :title="data.name"
-            />
-        </div>
-        <div class="design-card__row">
+        <NuxtLink :to="`/edit-design/${data.id}`">
+            <div class="design-card__img-wrap">
+                <img
+                    :src="data?.img"
+                    class="design-card__img"
+                    :alt="data.name"
+                    :title="data.name"
+                />
+            </div>
+        </NuxtLink>
+        <NuxtLink :to="data.url" class="design-card__row" target="_blank" external>
             <span class="design-card__id">
                 {{ data.design_id }}
             </span>
             <span class="design-card__name">{{ data.name }}</span>
-        </div>
+        </NuxtLink>
     </div>
 </template>
 
 <script setup lang="ts">
+import { NuxtLink } from '#components';
 import type { IDesign } from '../types'
 
 interface IProps {
@@ -61,6 +64,7 @@ defineProps<IProps>()
     &__name {
         font-size: 16px;
         line-height: 18px;
+        color: $light;
     }
 }
 </style>
