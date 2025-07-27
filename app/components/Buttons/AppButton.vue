@@ -50,6 +50,7 @@ const classes = computed(() => [
     font-family: inherit;
     border-radius: 3px;
     border: 1px solid rgba($black, .2);
+    cursor: pointer;
     transition: color $base-ui-transition, filter $base-ui-transition;
 
     @media (any-hover: hover) {

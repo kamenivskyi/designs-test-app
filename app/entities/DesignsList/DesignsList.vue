@@ -28,15 +28,15 @@ const items = useCollection(collection(db, COLLECTION_KEY))
         grid-template-columns: 1fr;
         grid-gap: 20px;
 
-        @media (min-width: 400px) {
+        @media (min-width: $sm-breakpoint) {
             grid-template-columns: 1fr 1fr;
         }
         
-        @media (min-width: 720px) {
+        @media (min-width: $md-breakpoint) {
             grid-template-columns: 1fr 1fr 1fr;
         }
 
-        @media (min-width: 1280px) {
+        @media (min-width: $lg-breakpoint) {
             grid-template-columns: 1fr 1fr 1fr 1fr;
         }
     }

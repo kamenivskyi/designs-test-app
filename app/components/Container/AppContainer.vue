@@ -8,7 +8,7 @@
 .app-container {
     padding: 0 15px;
     
-    @media (min-width: 720px) {
+    @media (min-width: $md-breakpoint) {
         padding: 0 32px;
     }
 }
